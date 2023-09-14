@@ -72,13 +72,20 @@ async def cmd_send_code(message: types.Message):
 
     button_2 = driver.find_element(By.ID, "ctl00_MainContent_ButtonB")
     button_2.click()
-    time.sleep(3)
+    time.sleep(2)
 
     driver.save_screenshot("result.png")
 
-    # driver.close()
     result = FSInputFile("result.png")
     await message.answer_photo(result, caption="Вот результат")
+    os.remove("result.png")
+    builder = InlineKeyboardBuilder()
+    builder.add(types.InlineKeyboardButton(
+        text="Проверить слоты",
+        callback_data="raise selenium"
+    ))
+    await message.answer("Чтобы повторить запрос, жми кнопку ниже", reply_markup=builder.as_markup())
+
 
 
 async def main():
