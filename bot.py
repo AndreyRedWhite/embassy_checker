@@ -72,7 +72,7 @@ async def cmd_send_code(message: types.Message):
 
     button_2 = driver.find_element(By.ID, "ctl00_MainContent_ButtonB")
     button_2.click()
-    time.sleep(2)
+    time.sleep(3)
 
     driver.save_screenshot("result.png")
 
